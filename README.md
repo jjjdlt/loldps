@@ -1,75 +1,57 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# LoLDPS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A **React-based web application** for League of Legends players that calculates and visualizes **average damage output over time** and evaluates **item gold efficiency**.  
+<img width="1913" height="823" alt="champselect1" src="https://github.com/user-attachments/assets/79ff469c-dcc1-4322-99ed-cca1b2a84ce7" />
 
-## Available Scripts
+Using Riot Games' official data (`.json` files), users can:
+- Select champions
+- Build custom item sets
+- Analyze spells, runes, and summoner spells
+- Compare item efficiency
+- Visualize DPS (damage per second) performance over time
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🔹 **Champion Selector** – choose any champion directly from Riot’s data  
+- 🔹 **Item Builder** – assemble custom builds and compare items  
+- 🔹 **Gold Efficiency Calculator** – evaluate item stats vs. cost  
+- 🔹 **DPS Simulator** – visualize sustained damage output over time  
+- 🔹 **Interactive UI** – clean, responsive design with React  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img width="1912" height="748" alt="itemselect1" src="https://github.com/user-attachments/assets/3a650bee-b944-4f9d-8ae0-d67689448b36" />
 
-### `npm test`
+<img width="1908" height="896" alt="image" src="https://github.com/user-attachments/assets/8471047a-0947-4148-9389-b0445a5cb8a9" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img width="1568" height="590" alt="damagecalc1" src="https://github.com/user-attachments/assets/a26d8c72-9fcc-4360-846b-446feb8f50a5" />
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend:** React, CSS  
+- **Data Source:** Riot Games static `.json` datasets (champions, items, runes, summoner spells)  
+- **Logic Layer:** Custom calculation engine for stats, item effects, and damage formulas  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- npm or yarn
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/jjjdlt/loldps.git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Navigate into the project
+cd loldps
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Install dependencies
+npm install
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# loldps
-react app that calculates and visualizes average damage output over time as well as item gold efficiency
->>>>>>> a358d89c0a95ff7d366b05f7df7d246eceac02c4
+# Run the app
+npm start

@@ -1,0 +1,312 @@
+/* ChampionSelector.css */
+
+.champion-selector {
+    background: linear-gradient(135deg, #0a1428 0%, #0c1f1f 100%);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Header styling */
+.champion-selector h3 {
+    color: #c89b3c;
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #3c4043;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Filters container */
+.champion-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(30, 35, 40, 0.3);
+    border-radius: 8px;
+}
+
+/* Search input styling */
+.champion-search {
+    flex: 1;
+    background: #1e2328;
+    border: 1px solid #3c4043;
+    border-radius: 4px;
+    color: #f0e6d2;
+    padding: 10px 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.champion-search:focus {
+    outline: none;
+    border-color: #c89b3c;
+    box-shadow: 0 0 8px rgba(200, 155, 60, 0.3);
+    background: #252930;
+}
+
+.champion-search::placeholder {
+    color: #666;
+}
+
+/* Role filter dropdown */
+.role-filter {
+    background: #1e2328;
+    border: 1px solid #3c4043;
+    border-radius: 4px;
+    color: #f0e6d2;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    font-family: inherit;
+}
+
+.role-filter:focus {
+    outline: none;
+    border-color: #c89b3c;
+    box-shadow: 0 0 8px rgba(200, 155, 60, 0.3);
+}
+
+.role-filter:hover {
+    background: #252930;
+    border-color: #4c5055;
+}
+
+.role-filter option {
+    background: #1e2328;
+    color: #f0e6d2;
+    padding: 5px;
+}
+
+/* Champion grid container */
+.champion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+    gap: 12px;
+    padding: 15px;
+    max-height: 450px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(60, 64, 67, 0.3);
+}
+
+/* Custom scrollbar for champion grid */
+.champion-grid::-webkit-scrollbar {
+    width: 10px;
+}
+
+.champion-grid::-webkit-scrollbar-track {
+    background: #1e2328;
+    border-radius: 5px;
+}
+
+.champion-grid::-webkit-scrollbar-thumb {
+    background: #3c4043;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.champion-grid::-webkit-scrollbar-thumb:hover {
+    background: #c89b3c;
+}
+
+/* No champions found message */
+.no-champions {
+    text-align: center;
+    color: #a09b8c;
+    padding: 40px 20px;
+    font-size: 14px;
+    font-style: italic;
+    background: rgba(30, 35, 40, 0.2);
+    border-radius: 8px;
+    border: 1px dashed #3c4043;
+}
+
+/* Loading state for the entire selector */
+.champion-selector.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.champion-selector.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid #3c4043;
+    border-top: 3px solid #c89b3c;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Section separator (if you want to add categories) */
+.champion-category {
+    color: #c89b3c;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    margin: 10px 0 5px 0;
+    background: rgba(200, 155, 60, 0.1);
+    border-left: 3px solid #c89b3c;
+    grid-column: 1 / -1;
+}
+
+/* Stats counter (showing how many champions are displayed) */
+.champion-count {
+    text-align: center;
+    color: #a09b8c;
+    font-size: 11px;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Filter tags (if you want to show active filters) */
+.active-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-tag {
+    background: rgba(200, 155, 60, 0.2);
+    color: #c89b3c;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(200, 155, 60, 0.3);
+}
+
+.filter-tag .remove {
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.filter-tag .remove:hover {
+    opacity: 1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .champion-selector {
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    .champion-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .champion-search,
+    .role-filter {
+        width: 100%;
+    }
+
+    .champion-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 8px;
+        max-height: 350px;
+        padding: 10px;
+    }
+
+    .champion-selector h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .champion-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 6px;
+    }
+}
+
+/* Animation for champion cards appearing */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.champion-grid .champion-card {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Stagger animation effect */
+.champion-grid .champion-card:nth-child(1) { animation-delay: 0.02s; }
+.champion-grid .champion-card:nth-child(2) { animation-delay: 0.04s; }
+.champion-grid .champion-card:nth-child(3) { animation-delay: 0.06s; }
+.champion-grid .champion-card:nth-child(4) { animation-delay: 0.08s; }
+.champion-grid .champion-card:nth-child(5) { animation-delay: 0.10s; }
+/* Pattern continues for smooth stagger effect */
+
+/* Hover effect for the entire selector container */
+.champion-selector:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Quick select buttons (if you want to add role quick filters) */
+.quick-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.quick-filter-btn {
+    background: rgba(30, 35, 40, 0.5);
+    border: 1px solid #3c4043;
+    color: #a09b8c;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+.quick-filter-btn:hover {
+    background: rgba(200, 155, 60, 0.1);
+    border-color: #c89b3c;
+    color: #f0e6d2;
+}
+
+.quick-filter-btn.active {
+    background: rgba(200, 155, 60, 0.2);
+    border-color: #c89b3c;
+    color: #c89b3c;
+    font-weight: 600;
+}

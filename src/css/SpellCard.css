@@ -1,0 +1,197 @@
+/* SpellCard.css */
+
+.spell-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border: 2px solid #1e2328;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #0c1f1f 0%, #091428 100%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 90px;
+    height: 140px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Special styling for passive abilities */
+.spell-card.passive {
+    border-color: #3c4043;
+    background: linear-gradient(135deg, #1a1e23 0%, #0d1117 100%);
+}
+
+.spell-card:hover {
+    border-color: #c89b3c;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(200, 155, 60, 0.4);
+    background: linear-gradient(135deg, #1e2328 0%, #0a1e2e 100%);
+    z-index: 10;
+}
+
+.spell-card.selected {
+    border-color: #c89b3c;
+    background: linear-gradient(135deg, #1e2938 0%, #0f2438 100%);
+    box-shadow: 0 4px 16px rgba(200, 155, 60, 0.6);
+}
+
+/* Hotkey indicator */
+.spell-hotkey {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #c89b3c;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #3c4043;
+    z-index: 2;
+}
+
+.spell-card.passive .spell-hotkey {
+    background: rgba(30, 35, 40, 0.9);
+    color: #a09b8c;
+    font-size: 8px;
+}
+
+/* Spell image container */
+.spell-image-container {
+    width: 64px;
+    height: 64px;
+    border: 1px solid #3c4043;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.spell-card:hover .spell-image-container {
+    border-color: #c89b3c;
+    box-shadow: 0 0 12px rgba(200, 155, 60, 0.5);
+}
+
+.spell-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Level indicator dots */
+.spell-level-dots {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2px;
+}
+
+.level-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1e2328;
+    border: 1px solid #3c4043;
+}
+
+.spell-card.selected .level-dot {
+    background: #c89b3c;
+    border-color: #f0e6d2;
+}
+
+/* Spell info */
+.spell-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.spell-name {
+    color: #f0e6d2;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* Quick stats display */
+.spell-quick-stats {
+    display: flex;
+    gap: 6px;
+    font-size: 9px;
+    color: #a09b8c;
+}
+
+.spell-stat {
+    display: flex;
+    align-items: center;
+}
+
+.spell-stat.damage {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.spell-stat.damage::before {
+    content: "⚔";
+    margin-right: 2px;
+}
+
+/* Selected indicator */
+.spell-selected-indicator {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #c89b3c;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #c89b3c;
+}
+
+/* Animation for selection */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.spell-card.selected .spell-selected-indicator {
+    animation: pulse 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .spell-card {
+        width: 75px;
+        height: 120px;
+    }
+
+    .spell-image-container {
+        width: 50px;
+        height: 50px;
+    }
+
+    .spell-name {
+        font-size: 10px;
+    }
+}

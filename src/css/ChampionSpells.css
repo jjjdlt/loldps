@@ -1,0 +1,224 @@
+/* ChampionSpells.css */
+
+.champion-spells-container {
+    background: linear-gradient(135deg, #0a1428 0%, #0c1f1f 100%);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.champion-spells-container h3 {
+    color: #c89b3c;
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #3c4043;
+    padding-bottom: 10px;
+}
+
+.no-champion-message,
+.loading-spells,
+.error-message {
+    color: #a09b8c;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.loading-spells {
+    color: #5bc0de;
+}
+
+/* Spells grid layout */
+.spells-grid {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Make passive slightly larger/different */
+.spells-grid .spell-card.passive {
+    transform: scale(1.05);
+    margin-right: 20px;
+}
+
+/* Spell details section */
+.spell-details {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #3c4043;
+}
+
+.spell-details h4 {
+    color: #f0e6d2;
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.spell-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.spell-detail-card {
+    background: rgba(30, 35, 40, 0.5);
+    border: 1px solid #3c4043;
+    border-radius: 8px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.spell-detail-card:hover {
+    background: rgba(30, 35, 40, 0.8);
+    border-color: #c89b3c;
+    box-shadow: 0 2px 8px rgba(200, 155, 60, 0.2);
+}
+
+.spell-detail-card h5 {
+    color: #c89b3c;
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.spell-detail-card p {
+    color: #a09b8c;
+    margin: 4px 0;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spell-detail-card p::before {
+    content: "▸";
+    color: #c89b3c;
+    margin-right: 6px;
+}
+
+/* Ability level selector (for future enhancement) */
+.ability-level-selector {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.level-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #3c4043;
+    background: #1e2328;
+    color: #a09b8c;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-button:hover {
+    border-color: #c89b3c;
+    color: #f0e6d2;
+    background: #2a2e35;
+}
+
+.level-button.active {
+    background: #c89b3c;
+    color: #0c0e10;
+    border-color: #f0e6d2;
+    font-weight: bold;
+}
+
+/* Tooltip enhancement for spell cards */
+.spell-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #c89b3c;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 200px;
+    max-width: 300px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.spell-card:hover .spell-tooltip {
+    opacity: 1;
+}
+
+.spell-tooltip h6 {
+    color: #c89b3c;
+    margin: 0 0 8px 0;
+    font-size: 12px;
+}
+
+.spell-tooltip p {
+    color: #f0e6d2;
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Animation for loading state */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spells::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    border: 2px solid #5bc0de;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .spells-grid {
+        justify-content: space-around;
+    }
+
+    .spells-grid .spell-card.passive {
+        transform: scale(1);
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 90px;
+    }
+
+    .spell-stats {
+        grid-template-columns: 1fr;
+    }
+}

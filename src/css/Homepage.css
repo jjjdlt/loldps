@@ -1,0 +1,223 @@
+/* Homepage.css - Enhanced Header Card and Navigation */
+
+.homepage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0e1a 0%, #0c1f1f 100%);
+}
+
+/* Header Card Container */
+.app-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 30px;
+    background: transparent;
+}
+
+/* Main Title Card */
+.header-card {
+    background: linear-gradient(135deg, #0a1428 0%, #0c1f1f 100%);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 30px 60px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 25px;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated border effect */
+.header-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c89b3c, transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.header-card h1 {
+    color: #c89b3c;
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(200, 155, 60, 0.3);
+    background: linear-gradient(135deg, #f0e6d2 0%, #c89b3c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header-card p {
+    color: #a09b8c;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation Container */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+/* Navigation Buttons - Matching your existing button style */
+.main-nav button {
+    background: linear-gradient(135deg, #1e2328 0%, #0a1e2e 100%);
+    border: 2px solid #3c4043;
+    border-radius: 8px;
+    color: #a09b8c;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+}
+
+/* Hover effect */
+.main-nav button:hover {
+    transform: translateY(-3px);
+    border-color: #c89b3c;
+    color: #f0e6d2;
+    box-shadow: 0 6px 20px rgba(200, 155, 60, 0.3);
+    background: linear-gradient(135deg, #2a2e35 0%, #0f2438 100%);
+}
+
+/* Active state - golden glow */
+.main-nav button.active {
+    background: linear-gradient(135deg, #c89b3c 0%, #9c7a2c 100%);
+    color: #0c0e10;
+    border-color: #f0e6d2;
+    box-shadow: 0 4px 16px rgba(200, 155, 60, 0.5);
+    font-weight: 700;
+}
+
+.main-nav button.active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200, 155, 60, 0.6);
+}
+
+/* Button icons (optional enhancement) */
+.main-nav button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(200, 155, 60, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.main-nav button:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Main Content Area */
+.main-content {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.app-footer {
+    background: rgba(30, 35, 40, 0.3);
+    border-top: 1px solid #3c4043;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.app-footer p {
+    color: #a09b8c;
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+/* Placeholder sections styling */
+.build-compare,
+.saved-builds {
+    background: linear-gradient(135deg, #0a1428 0%, #0c1f1f 100%);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.build-compare h2,
+.saved-builds h2 {
+    color: #c89b3c;
+    margin: 0 0 15px 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.build-compare p,
+.saved-builds p {
+    color: #a09b8c;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-card {
+        padding: 25px 30px;
+    }
+
+    .header-card h1 {
+        font-size: 36px;
+    }
+
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-nav button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-card h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .header-card p {
+        font-size: 14px;
+    }
+
+    .main-nav button {
+        padding: 12px 24px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,590 @@
+/* SavedBuilds.css - League-themed styling! */
+
+.saved-builds-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(135deg, #0a0e1a 0%, #0c1f1f 100%);
+}
+
+/* Left Column - Builds List */
+.builds-list-column {
+    width: 320px;
+    background: rgba(30, 35, 40, 0.5);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.builds-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3c4043;
+}
+
+.builds-list-header h2 {
+    color: #c89b3c;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.build-count {
+    color: #a09b8c;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+/* Build List Items */
+.builds-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.build-list-item {
+    background: linear-gradient(135deg, #1e2328 0%, #0a1e2e 100%);
+    border: 2px solid #3c4043;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.build-list-item:hover {
+    border-color: #c89b3c;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(200, 155, 60, 0.2);
+}
+
+.build-list-item.selected {
+    background: linear-gradient(135deg, #c89b3c 0%, #9c7a2c 100%);
+    border-color: #f0e6d2;
+    box-shadow: 0 4px 16px rgba(200, 155, 60, 0.5);
+}
+
+.build-list-item.selected .build-name,
+.build-list-item.selected .champion-name,
+.build-list-item.selected .build-level {
+    color: #0c0e10;
+}
+
+.build-list-item.selected .build-cost,
+.build-list-item.selected .build-date {
+    color: #1e2328;
+}
+
+.build-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.build-name {
+    color: #f0e6d2;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.build-name-input {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #c89b3c;
+    color: #f0e6d2;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.build-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.build-list-item:hover .action-btn {
+    opacity: 0.7;
+}
+
+.action-btn:hover {
+    opacity: 1 !important;
+}
+
+.build-item-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.champion-name {
+    color: #a09b8c;
+    font-size: 12px;
+}
+
+.build-level {
+    color: #c89b3c;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.build-item-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+}
+
+.build-cost {
+    color: #f0b232;
+}
+
+.build-date {
+    color: #5c5b57;
+}
+
+/* No Builds Message */
+.no-builds-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #a09b8c;
+}
+
+.no-builds-message p {
+    margin: 10px 0;
+}
+
+.no-builds-message .hint {
+    font-size: 12px;
+    color: #5c5b57;
+}
+
+/* Right Column - Build Details */
+.build-details-column {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Build Card */
+.build-card {
+    width: 100%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #0a1428 0%, #0c1f1f 100%);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.build-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #3c4043;
+}
+
+.build-card-header h2 {
+    color: #c89b3c;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+.load-build-btn {
+    background: linear-gradient(135deg, #c89b3c 0%, #9c7a2c 100%);
+    border: 2px solid #f0e6d2;
+    color: #0c0e10;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.load-build-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200, 155, 60, 0.4);
+}
+
+/* Champion and Items Section */
+.champion-items-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.champion-portrait {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.champion-portrait img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 3px solid #c89b3c;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.champion-level {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: #c89b3c;
+    color: #0c0e10;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.item-slot {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #3c4043;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.empty-item-slot {
+    color: #5c5b57;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Runes Section */
+.runes-section {
+    margin-bottom: 30px;
+}
+
+.runes-section h3 {
+    color: #c89b3c;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.runes-grid {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    background: rgba(30, 35, 40, 0.3);
+    border-radius: 8px;
+}
+
+.rune-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rune-tree.primary {
+    flex: 1;
+}
+
+.rune-tree.secondary {
+    flex: 0.8;
+}
+
+.rune-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.rune-row.keystone {
+    margin-bottom: 8px;
+}
+
+.rune-slot,
+.shard-slot {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #3c4043;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #5c5b57;
+}
+
+.rune-slot.placeholder,
+.shard-slot.placeholder {
+    opacity: 0.5;
+}
+
+.stat-shards {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.shard-row {
+    display: flex;
+    gap: 6px;
+}
+
+/* Stats Visualization */
+.stats-visualization {
+    background: rgba(30, 35, 40, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.stats-visualization h3 {
+    color: #c89b3c;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.stat-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-label {
+    color: #a09b8c;
+    font-size: 12px;
+    font-weight: 600;
+    width: 35px;
+    text-align: right;
+}
+
+.bar-container {
+    flex: 1;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #3c4043;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.bar-fill.ad {
+    background: linear-gradient(90deg, #ff6b6b 0%, #ff4444 100%);
+}
+
+.bar-fill.ap {
+    background: linear-gradient(90deg, #6b9eff 0%, #4466ff 100%);
+}
+
+.bar-fill.as {
+    background: linear-gradient(90deg, #ffb86b 0%, #ff9944 100%);
+}
+
+.bar-fill.pen {
+    background: linear-gradient(90deg, #ff6bff 0%, #ff44ff 100%);
+}
+
+.bar-fill.ms {
+    background: linear-gradient(90deg, #6bff6b 0%, #44ff44 100%);
+}
+
+.bar-fill.cdr {
+    background: linear-gradient(90deg, #6bffff 0%, #44ffff 100%);
+}
+
+.bar-value {
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stat-change {
+    color: #4caf50;
+    font-size: 11px;
+    font-weight: 600;
+    width: 50px;
+    text-align: left;
+}
+
+/* Gold Efficiency */
+.gold-efficiency {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+}
+
+.gold-efficiency h4 {
+    color: #c89b3c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.efficiency-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f0b232;
+    margin-bottom: 8px;
+}
+
+.efficiency-label {
+    font-size: 12px;
+    color: #a09b8c;
+}
+
+.efficiency-note {
+    font-size: 11px;
+    color: #5c5b57;
+    margin: 5px 0 0 0;
+}
+
+/* No Build Selected */
+.no-build-selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    background: linear-gradient(135deg, #0a1428 0%, #0c1f1f 100%);
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.no-build-selected h2 {
+    color: #c89b3c;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.no-build-selected p {
+    color: #a09b8c;
+    font-size: 14px;
+}
+
+/* Loading State */
+.loading-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: #c89b3c;
+    font-size: 18px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .saved-builds-container {
+        flex-direction: column;
+    }
+
+    .builds-list-column {
+        width: 100%;
+        max-height: 300px;
+    }
+
+    .build-details-column {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .champion-items-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .items-grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr;
+    }
+
+    .runes-grid {
+        flex-direction: column;
+    }
+
+    .stat-bars {
+        gap: 8px;
+    }
+
+    .build-card {
+        padding: 15px;
+    }
+}

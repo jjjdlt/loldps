@@ -1,23 +1,27 @@
-// HomePage.js - The main interface! *excited wiggle*
+// HomePage.js - Updated with SavedBuilds integration! *happy wiggle*
 import React, { useState } from 'react';
 import ChampionBuilder from '../backend/ChampionBuilder';
+import SavedBuilds from '../components/SavedBuilds'; // Import the new component!
+import '../css/Homepage.css';
 
 function HomePage() {
-    const [activeTab, setActiveTab] = useState('builder');
+    const [activeTab, setActiveTab] = useState('combatsim');
 
     return (
         <div className="homepage">
             <header className="app-header">
-                <h1>⚔️ League of Legends Stat Calculator ⚔️</h1>
-                <p>Build your perfect champion loadout! :3</p>
+                <div className="header-card">
+                    <h1>LoLDPS</h1>
+                    <p>build your perfect champion loadout :3</p>
+                </div>
             </header>
 
             <nav className="main-nav">
                 <button
-                    className={activeTab === 'builder' ? 'active' : ''}
-                    onClick={() => setActiveTab('builder')}
+                    className={activeTab === 'combatsim' ? 'active' : ''}
+                    onClick={() => setActiveTab('combatsim')}
                 >
-                    Champion Builder
+                    Combat Sim
                 </button>
                 <button
                     className={activeTab === 'compare' ? 'active' : ''}
@@ -34,7 +38,7 @@ function HomePage() {
             </nav>
 
             <main className="main-content">
-                {activeTab === 'builder' && <ChampionBuilder />}
+                {activeTab === 'combatsim' && <ChampionBuilder />}
                 {activeTab === 'compare' && <BuildCompare />}
                 {activeTab === 'saved' && <SavedBuilds />}
             </main>
@@ -47,21 +51,12 @@ function HomePage() {
     );
 }
 
-// Placeholder components - expand these as needed!
+// Placeholder component for Build Comparison - still coming soon!
 function BuildCompare() {
     return (
         <div className="build-compare">
-            <h2>Build Comparison (Coming Soon!)</h2>
-            <p>Compare different builds side by side!</p>
-        </div>
-    );
-}
-
-function SavedBuilds() {
-    return (
-        <div className="saved-builds">
-            <h2>Saved Builds (Coming Soon!)</h2>
-            <p>Save and load your favorite builds!</p>
+            <h2>Build Comparison</h2>
+            <p>Compare different builds side by side! Coming soon :3</p>
         </div>
     );
 }

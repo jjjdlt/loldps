@@ -1,7 +1,10 @@
-// ChampionSpells.js
+// ChampionSpells.js - Fixed to work with Data Dragon API correctly!
 import React, { useState, useEffect } from 'react';
 import SpellCard from './SpellCard';
 import '../css/ChampionSpells.css';
+
+// Simple cache to avoid repeated fetches
+const championDataCache = {};
 
 function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
     const [championData, setChampionData] = useState(null);
@@ -10,13 +13,10 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
 
     // Format champion name for API URL
     const formatChampionNameForAPI = (key) => {
-        // Special cases for API URLs
         const specialCases = {
             'Wukong': 'MonkeyKing',
             'Nunu & Willump': 'Nunu',
-            // Add more special cases as needed
         };
-
         return specialCases[key] || key.replace(/['\s]/g, '');
     };
 
@@ -32,22 +32,49 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
 
             try {
                 const formattedName = formatChampionNameForAPI(championKey);
+
+                // Check cache first
+                if (championDataCache[formattedName]) {
+                    setChampionData(championDataCache[formattedName]);
+                    setLoading(false);
+                    return;
+                }
+
+                // Try to fetch the individual champion data
                 const url = `https://ddragon.leagueoflegends.com/cdn/15.18.1/data/en_US/champion/${formattedName}.json`;
 
                 const response = await fetch(url);
+
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch champion data: ${response.status}`);
+                    // If direct fetch fails, try with a CORS proxy
+                    console.warn(`Direct fetch failed, trying proxy...`);
+                    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+                    const proxyResponse = await fetch(proxyUrl);
+
+                    if (!proxyResponse.ok) {
+                        throw new Error(`Failed to fetch champion data: ${proxyResponse.status}`);
+                    }
+
+                    const proxyData = await proxyResponse.json();
+                    const championInfo = proxyData.data[formattedName] || proxyData.data[championKey];
+
+                    if (championInfo) {
+                        championDataCache[formattedName] = championInfo;
+                        setChampionData(championInfo);
+                    } else {
+                        throw new Error('Champion data not found');
+                    }
+                } else {
+                    const data = await response.json();
+                    const championInfo = data.data[formattedName] || data.data[championKey];
+
+                    if (!championInfo) {
+                        throw new Error('Champion data not found in response');
+                    }
+
+                    championDataCache[formattedName] = championInfo;
+                    setChampionData(championInfo);
                 }
-
-                const data = await response.json();
-                // The data comes wrapped in a data object with the champion name as key
-                const championInfo = data.data[formattedName] || data.data[championKey];
-
-                if (!championInfo) {
-                    throw new Error('Champion data not found in response');
-                }
-
-                setChampionData(championInfo);
             } catch (err) {
                 console.error('Error fetching champion data:', err);
                 setError(err.message);
@@ -59,6 +86,14 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
         fetchChampionData();
     }, [championKey]);
 
+    // Handle spell click
+    const handleSpellClick = (spellId, spellData) => {
+        if (onSpellSelect) {
+            onSpellSelect(spellId, spellData);
+        }
+    };
+
+    // Loading state
     if (!championKey) {
         return (
             <div className="champion-spells-container">
@@ -81,7 +116,24 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
         return (
             <div className="champion-spells-container">
                 <h3>Champion Abilities</h3>
-                <div className="error-message">Failed to load abilities: {error}</div>
+                <div className="error-message">
+                    Failed to load abilities: {error}
+                    <br />
+                    <button
+                        onClick={() => window.location.reload()}
+                        style={{
+                            marginTop: '10px',
+                            padding: '5px 10px',
+                            cursor: 'pointer',
+                            background: '#c89b3c',
+                            border: 'none',
+                            borderRadius: '4px',
+                            color: '#0c1f1f'
+                        }}
+                    >
+                        Retry
+                    </button>
+                </div>
             </div>
         );
     }
@@ -90,18 +142,12 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
         return null;
     }
 
-    const handleSpellClick = (spellId, spellData) => {
-        if (onSpellSelect) {
-            onSpellSelect(spellId, spellData);
-        }
-    };
-
     return (
         <div className="champion-spells-container">
             <h3>{championData.name}'s Abilities</h3>
 
             <div className="spells-grid">
-                {/* Passive Ability */}
+                {/* Passive Ability - NO imageUrl prop! */}
                 {championData.passive && (
                     <SpellCard
                         spell={championData.passive}
@@ -113,7 +159,7 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
                     />
                 )}
 
-                {/* Q, W, E, R Abilities */}
+                {/* Q, W, E, R Abilities - NO imageUrl prop! */}
                 {championData.spells && championData.spells.map((spell, index) => {
                     const hotkeys = ['Q', 'W', 'E', 'R'];
                     const spellId = `spell${index}`;
@@ -140,20 +186,20 @@ function ChampionSpells({ championKey, onSpellSelect, selectedSpells = [] }) {
                         {selectedSpells.map(spellId => {
                             const spell = spellId === 'passive'
                                 ? championData.passive
-                                : championData.spells[parseInt(spellId.replace('spell', ''))];
+                                : championData.spells?.[parseInt(spellId.replace('spell', ''))];
 
                             if (!spell) return null;
 
                             return (
                                 <div key={spellId} className="spell-detail-card">
                                     <h5>{spell.name}</h5>
-                                    {spell.cooldownBurn && (
+                                    {spell.cooldownBurn && spell.cooldownBurn !== "0" && (
                                         <p>Cooldown: {spell.cooldownBurn}s</p>
                                     )}
-                                    {spell.costBurn && (
+                                    {spell.costBurn && spell.costBurn !== "0" && (
                                         <p>Cost: {spell.costBurn}</p>
                                     )}
-                                    {spell.rangeBurn && (
+                                    {spell.rangeBurn && spell.rangeBurn !== "self" && (
                                         <p>Range: {spell.rangeBurn}</p>
                                     )}
                                 </div>

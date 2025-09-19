@@ -1,7 +1,8 @@
-// HomePage.js - Updated with SavedBuilds integration! *happy wiggle*
+// HomePage.js - Updated with BuildComparison integration! *happy wiggle*
 import React, { useState } from 'react';
 import ChampionBuilder from '../backend/ChampionBuilder';
-import SavedBuilds from '../components/SavedBuilds'; // Import the new component!
+import SavedBuilds from '../components/SavedBuilds';
+import BuildComparison from '../components/BuildComparison'; // Import the new component!
 import '../css/Homepage.css';
 
 function HomePage() {
@@ -39,7 +40,7 @@ function HomePage() {
 
             <main className="main-content">
                 {activeTab === 'combatsim' && <ChampionBuilder />}
-                {activeTab === 'compare' && <BuildCompare />}
+                {activeTab === 'compare' && <BuildComparison />}
                 {activeTab === 'saved' && <SavedBuilds />}
             </main>
 
@@ -47,16 +48,6 @@ function HomePage() {
                 <p>Made with 💜 using Riot Games API data</p>
                 <p>Not affiliated with Riot Games</p>
             </footer>
-        </div>
-    );
-}
-
-// Placeholder component for Build Comparison - still coming soon!
-function BuildCompare() {
-    return (
-        <div className="build-compare">
-            <h2>Build Comparison</h2>
-            <p>Compare different builds side by side! Coming soon :3</p>
         </div>
     );
 }

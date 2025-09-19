@@ -1,0 +1,355 @@
+/* RuneBuilder.css */
+
+.rune-builder {
+    background: #0a0e1a;
+    border: 2px solid #1e2328;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
+
+.runes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Loading and Error States */
+.rune-builder.loading,
+.rune-builder.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    color: #f0e6d2;
+}
+
+.loading-spinner {
+    font-size: 18px;
+    color: #c89b3c;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Tree Selector Row */
+.tree-selector-row {
+    display: flex;
+    gap: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #1e2328;
+    justify-content: center;
+}
+
+.tree-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.tree-icon {
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 2px solid #3c4043;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tree-icon img {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%) brightness(0.6);
+    transition: filter 0.3s ease;
+}
+
+.tree-icon:hover:not(.disabled) {
+    border-color: #c89b3c;
+    transform: translateY(-2px);
+}
+
+.tree-icon:hover:not(.disabled) img {
+    filter: grayscale(50%) brightness(0.8);
+}
+
+.tree-icon.selected {
+    border-color: #c89b3c;
+    background: radial-gradient(ellipse at center, rgba(200, 155, 60, 0.2) 0%, transparent 70%);
+    box-shadow: 0 0 20px rgba(200, 155, 60, 0.4);
+}
+
+.tree-icon.selected img {
+    filter: none;
+}
+
+.tree-icon.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.tree-icon.disabled:hover {
+    border-color: #3c4043;
+    transform: none;
+}
+
+/* Main Rune Selection Area */
+.runes-selection-area {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Rune Columns */
+.rune-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.primary-column {
+    min-width: 280px;
+}
+
+.secondary-column {
+    min-width: 220px;
+}
+
+/* Right Side Container */
+.right-side-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Rune Rows */
+.rune-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: rgba(30, 35, 40, 0.3);
+    border-radius: 8px;
+}
+
+.keystone-row {
+    background: rgba(200, 155, 60, 0.05);
+    border: 1px solid rgba(200, 155, 60, 0.2);
+}
+
+/* Rune Slots */
+.rune-slot {
+    width: 42px;
+    height: 42px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border: 2px solid #3c4043;
+    border-radius: 50%;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.rune-slot.keystone {
+    width: 56px;
+    height: 56px;
+    border-width: 3px;
+}
+
+.rune-slot img {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%) brightness(0.5);
+    transition: all 0.3s ease;
+}
+
+.rune-slot:hover:not(.disabled) {
+    border-color: #c89b3c;
+    transform: scale(1.1);
+}
+
+.rune-slot:hover:not(.disabled) img {
+    filter: grayscale(0%) brightness(0.8);
+}
+
+.rune-slot.selected {
+    border-color: #c89b3c;
+    background: radial-gradient(circle, rgba(200, 155, 60, 0.3) 0%, rgba(200, 155, 60, 0.1) 100%);
+    box-shadow:
+            0 0 20px rgba(200, 155, 60, 0.6),
+            inset 0 0 10px rgba(200, 155, 60, 0.3);
+}
+
+.rune-slot.selected img {
+    filter: none;
+}
+
+.rune-slot.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.rune-slot.disabled:hover {
+    transform: none;
+    border-color: #3c4043;
+}
+
+/* Stat Shards Column */
+.stat-shards-column {
+    background: rgba(30, 35, 40, 0.4);
+    border: 1px solid #1e2328;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 180px;
+}
+
+.shards-title {
+    color: #c89b3c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Shard Rows */
+.shard-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.shard-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Shard Slots */
+.shard-slot {
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border: 2px solid #3c4043;
+    border-radius: 50%;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.shard-slot img {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%) brightness(0.5);
+    transition: all 0.3s ease;
+}
+
+.shard-slot:hover {
+    border-color: #c89b3c;
+    transform: scale(1.1);
+}
+
+.shard-slot:hover img {
+    filter: grayscale(0%) brightness(0.8);
+}
+
+.shard-slot.selected {
+    border-color: #c89b3c;
+    background: radial-gradient(circle, rgba(200, 155, 60, 0.3) 0%, rgba(200, 155, 60, 0.1) 100%);
+    box-shadow:
+            0 0 15px rgba(200, 155, 60, 0.5),
+            inset 0 0 8px rgba(200, 155, 60, 0.3);
+}
+
+.shard-slot.selected img {
+    filter: none;
+}
+
+/* Tree Placeholder */
+.tree-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    color: #5c5b57;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(30, 35, 40, 0.2);
+    border: 2px dashed #3c4043;
+    border-radius: 8px;
+}
+
+/* Special Effects */
+.rune-slot::before,
+.shard-slot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(200, 155, 60, 0.8), transparent);
+    transition: width 0.3s ease, height 0.3s ease;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.rune-slot.selected::before,
+.shard-slot.selected::before {
+    width: 100%;
+    height: 100%;
+}
+
+/* Tooltip Support */
+.rune-slot[title],
+.shard-slot[title],
+.tree-icon[title] {
+    position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .runes-selection-area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .right-side-container {
+        width: 100%;
+        align-items: center;
+    }
+
+    .tree-selector-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Animation for selection */
+@keyframes selectPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(200, 155, 60, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(200, 155, 60, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(200, 155, 60, 0.6);
+    }
+}
+
+.rune-slot.selected,
+.shard-slot.selected {
+    animation: selectPulse 2s ease-in-out infinite;
+}

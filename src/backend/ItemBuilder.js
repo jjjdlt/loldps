@@ -123,8 +123,10 @@ function ItemBuilder({ items, onAddItem, onRemoveItem, currentItems = [], maxIte
                 <div className="build-slots">
                     {[...Array(maxItems)].map((_, index) => {
                         const item = currentItems[index];
+                        // Use a combination of slot position and item id for truly unique keys
+                        const slotKey = item ? `slot-${index}-item-${item.id}` : `empty-slot-${index}`;
                         return (
-                            <div key={index} className="build-slot">
+                            <div key={slotKey} className="build-slot">
                                 {item ? (
                                     <div className="build-item" onClick={() => handleRemoveItem(item.id)}>
                                         <img

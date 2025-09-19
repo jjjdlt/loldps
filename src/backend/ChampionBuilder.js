@@ -8,6 +8,9 @@ import DamageCalculator from '../components/DamageCalculator';
 import ChampionSpells from '../components/ChampionSpells';
 import BuildStorage from './BuildStorage';
 import '../css/ChampionBuilder.css'; // We'll need to create some additional styles
+import RuneBuilder from '../components/RuneBuilder';
+
+
 
 function ChampionBuilder() {
     const { createCalculator, champions, items } = useGameData();
@@ -32,6 +35,16 @@ function ChampionBuilder() {
         // Calculate initial stats
         const initialStats = newCalculator.calculateFinalStats();
         setCurrentStats(initialStats);
+    };
+
+    const handleRuneUpdate = (selectedRunes) => {
+        // Update your calculator with the new runes
+        if (calculator) {
+            calculator.setKeystone(selectedRunes.primaryKeystone);
+            calculator.setPrimaryRunes(selectedRunes.primaryRunes);
+            calculator.setSecondaryRunes(selectedRunes.secondaryRunes);
+            calculator.setStatShards(selectedRunes.statShards);
+        }
     };
 
     const handleSpellSelect = (spellId, spellData) => {
@@ -244,13 +257,16 @@ function ChampionBuilder() {
                             </div>
                         </div>
                     </div>
-
+                    <RuneBuilder
+                        onRuneUpdate={handleRuneUpdate}
+                        // initialRunes={savedRunes} // Optional: pass in saved runes
+                    />
                     <StatsDisplay
                         stats={currentStats}
                         championName={champions[selectedChampion]?.name}
                         level={calculator.level}
                     />
-                    <DamageCalculator calculator={calculator} />
+                    <DamageCalculator attackerCalculator={calculator} />
                 </>
             )}
         </div>
